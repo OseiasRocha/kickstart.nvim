@@ -29,5 +29,7 @@ return {
     )
     vim.api.nvim_create_user_command('PeekOpen', require('peek').open, {})
     vim.api.nvim_create_user_command('PeekClose', require('peek').close, {})
+    vim.keymap.set('n', '<C-p><C-o>', require('peek').open, { desc = '[P]eek [O]pen' })
+    vim.keymap.set('n', '<C-p><C-a>', require('peek').close, { desc = '[P]eek [C]lose' })
   end,
 }

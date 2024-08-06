@@ -17,4 +17,9 @@ return {
   keys = {
     { '<leader>lg', '<cmd>LazyGit<cr>', desc = 'LazyGit' },
   },
+
+  config = function()
+    vim.opt.shell = '"C:/Program Files/Git/bin/bash.exe"'
+    vim.opt.shellcmdflag = '-c'
+  end,
 }
