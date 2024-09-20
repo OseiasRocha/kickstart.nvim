@@ -238,28 +238,6 @@ require('lazy').setup({
   -- Use `opts = {}` to force a plugin to be loaded.
   --
 
-  --  This is equivalent to:
-  --    require('Comment').setup({})
-  {
-    -- 'catppuccin/neovim',
-    --
-    -- name = 'rose-pine',
-
-    -- require('rose-pine').setup {
-    --   variant = 'main',
-    --   dark_variant = 'main',
-    --
-    --   enable = {
-    --     terminal = true,
-    --     legacy_highlights = true,
-    --     migrations = true,
-    --   },
-    -- },
-  },
-
-  -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
-
   -- Here is a more advanced example where we pass configuration
   -- options to `gitsigns.nvim`. This is equivalent to the following Lua:
   --    require('gitsigns').setup({ ... })
@@ -437,7 +415,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-      vim.keymap.set('n', '<leader>sb', builtin.buffers, { desc = '[S]earch Open [B]uffers' })
+      vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
@@ -862,12 +840,8 @@ require('lazy').setup({
     -- change the command in the config to whatever the name of that colorscheme is.
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    -- 'EdenEast/nightfox.nvim',
-    -- init = function()
-    --   vim.cmd 'colorscheme carbonfox'
-    -- end,
-    'catppuccin/nvim',
-    flavor = 'mocha',
+    -- 'catppuccin/nvim',
+    'danwlker/primeppuccin',
     priority = 1000, -- Make sure to load this before all the other start plugins.
     init = function()
       -- Load the colorscheme here.
@@ -926,7 +900,6 @@ require('lazy').setup({
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
-
       ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'cpp' },
       -- Autoinstall languages that are not installed
       auto_install = true,
