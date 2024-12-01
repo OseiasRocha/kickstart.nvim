@@ -355,6 +355,10 @@ require("lazy").setup({
 
 			-- Useful for getting pretty icons, but requires a Nerd Font.
 			{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
+			{
+				"nvim-telescope/telescope-file-browser.nvim",
+				-- dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+			},
 		},
 		config = function()
 			-- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -397,12 +401,22 @@ require("lazy").setup({
 					["ui-select"] = {
 						require("telescope.themes").get_dropdown(),
 					},
+					file_browser = {
+						theme = "ivy",
+						hijack_netrw = true,
+						grouped = true,
+						respect_gitignore = true,
+						git_status = true,
+						follow_symlinks = true,
+						auto_depth = true,
+					},
 				},
 			})
 
 			-- Enable Telescope extensions if they are installed
 			pcall(require("telescope").load_extension, "fzf")
 			pcall(require("telescope").load_extension, "ui-select")
+			pcall(require("telescope").load_extension, "file_browser")
 
 			-- See `:help telescope.builtin`
 			local builtin = require("telescope.builtin")
@@ -416,6 +430,16 @@ require("lazy").setup({
 			vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
 			vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
 			vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
+			-- vim.keymap.set(
+			-- 	"n",
+			-- 	"<leader>fb",
+			-- 	require("telescope").extensions.file_browser.file_browser(),
+			-- 	{ desc = "File browser" }
+			-- )
+
+			vim.keymap.set("n", "<leader>fb", function()
+				require("telescope").extensions.file_browser.file_browser()
+			end, { desc = "[F]ile [B]rowser" })
 
 			-- Slightly advanced example of overriding default behavior and theme
 			vim.keymap.set("n", "<leader>/", function()
@@ -673,6 +697,7 @@ require("lazy").setup({
 				"cmake-language-server",
 				"cmakelang",
 				"codelldb",
+				"rust-analyzer",
 			})
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
@@ -973,7 +998,7 @@ require("lazy").setup({
 	--    This is the easiest way to modularize your config.
 	--
 	--  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-	-- { import = 'custom.plugins' },
+	{ import = "custom.plugins" },
 	--
 	-- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
 	-- Or use telescope!
