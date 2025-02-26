@@ -95,6 +95,9 @@ vim.g.have_nerd_font = false
 
 vim.keymap.set('n', '<leader>pv', '<CMD>:Ex<CR>', { desc = 'Open parent directory' })
 
+local opts = { noremap = true, silent = true, desc = '[N]eogen [G]enerate' }
+vim.api.nvim_set_keymap('n', '<Leader>ng', ":lua require('neogen').generate()<CR>", opts)
+
 -- [[ Setting options ]]
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
