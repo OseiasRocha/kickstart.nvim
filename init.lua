@@ -171,6 +171,11 @@ vim.o.scrolloff = 10
 -- See `:help 'confirm'`
 vim.o.confirm = true
 
+vim.opt.expandtab = true
+vim.opt.tabstop = 3
+vim.opt.shiftwidth = 3
+vim.opt.softtabstop = -1
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
@@ -678,7 +683,7 @@ require('lazy').setup({
       local servers = {
         clangd = {},
         gopls = {},
-        -- pyright = {},
+        pyright = {},
         rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -686,7 +691,7 @@ require('lazy').setup({
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
-        -- ts_ls = {},
+        ts_ls = {},
         --
 
         lua_ls = {
@@ -779,7 +784,7 @@ require('lazy').setup({
         -- python = { "isort", "black" },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
-        -- javascript = { "prettierd", "prettier", stop_after_first = true },
+        javascript = { 'prettierd', 'prettier', stop_after_first = true },
       },
       formatters = {
         clang_format = {
@@ -947,6 +952,10 @@ require('lazy').setup({
         return '%2l:%-2v'
       end
 
+      statusline.section_filename = function()
+        return '%f%m%r'
+      end
+
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
     end,
@@ -957,7 +966,31 @@ require('lazy').setup({
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'cpp', 'rust' },
+      ensure_installed = {
+        'bash',
+        'c',
+        'diff',
+        'html',
+        'lua',
+        'luadoc',
+        'markdown',
+        'markdown_inline',
+        'query',
+        'vim',
+        'vimdoc',
+        'cpp',
+        'rust',
+        'javascript',
+        'typescript',
+        'css',
+        'scss',
+        'json',
+        'graphql',
+        'markdown',
+        'vue',
+        'yaml',
+        'html',
+      },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
