@@ -168,8 +168,8 @@ vim.opt.scrolloff = 10
 vim.opt.confirm = true
 
 vim.opt.expandtab = true
-vim.opt.tabstop = 3
-vim.opt.shiftwidth = 3
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
 vim.opt.softtabstop = -1
 
 -- [[ Basic Keymaps ]]
