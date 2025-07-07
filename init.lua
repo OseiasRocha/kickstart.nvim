@@ -172,8 +172,8 @@ vim.o.scrolloff = 10
 vim.o.confirm = true
 
 vim.opt.expandtab = true
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
 vim.opt.softtabstop = -1
 
 -- [[ Basic Keymaps ]]
@@ -486,6 +486,9 @@ require('lazy').setup({
     },
   },
   {
+    'nvim-java/nvim-java',
+  },
+  {
     -- Main LSP Configuration
     'neovim/nvim-lspconfig',
     dependencies = {
@@ -708,6 +711,7 @@ require('lazy').setup({
             },
           },
         },
+        jdtls = {},
       }
 
       -- Ensure the servers and tools above are installed
@@ -982,14 +986,8 @@ require('lazy').setup({
         'rust',
         'javascript',
         'typescript',
-        'css',
-        'scss',
         'json',
-        'graphql',
         'markdown',
-        'vue',
-        'yaml',
-        'html',
       },
       -- Autoinstall languages that are not installed
       auto_install = true,
