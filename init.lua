@@ -673,8 +673,7 @@ require('lazy').setup({
               format = { enable = false }, -- Disable formatting (formatting is done by stylua)
             },
           },
-        },
-        jdtls = {},
+        }
       }
 
       -- Ensure the servers and tools above are installed
