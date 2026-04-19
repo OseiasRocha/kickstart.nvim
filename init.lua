@@ -690,19 +690,6 @@ require('lazy').setup({
       })
 
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
-      local ok, lspconfig = pcall(require, 'lspconfig')
-      if not ok then
-        print 'lspconfig not found'
-        return
-      end
-
-      lspconfig.clangd.setup {
-        cmd = { 'clangd', '--compile-commands-dir=build' }, -- use whatever `which clangd` gives inside nix develop
-        -- You can comment root_dir out entirely to test with default behavior:
-        root_dir = function(fname)
-          return lspconfig.util.root_pattern('CMakeLists.txt', '.git')(fname) or vim.fn.getcwd()
-        end,
-      }
 
       for name, server in pairs(servers) do
         vim.lsp.config(name, server)
